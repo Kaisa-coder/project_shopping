@@ -1,32 +1,27 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+  <div>
+    <Header></Header>
+    <router-view></router-view>
+    <Footer v-show="$route.meta.isHideFooter"></Footer>
   </div>
 </template>
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script>
+import Header from '@/components/Header/Header.vue'
+import Footer from '@/components/Footer/Footer.vue'
+export default {
+  name: 'myAPp',
+  components: {
+    Header,
+    Footer
+  },
+  mounted () {
+    // 派发一个action,获取商品列表的三级列表
+    this.$store.dispatch('categoryList')
   }
 }
+</script>
+
+<style>
+
 </style>
